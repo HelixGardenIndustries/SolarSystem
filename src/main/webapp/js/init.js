@@ -10,6 +10,7 @@
 var container, scene, camera, renderer, controls, stats;
 var keyboard = new THREEx.KeyboardState();
 var celestialBodyMap = {};
+var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
 var clock = new THREE.Clock();
 
 // custom global variables
@@ -19,21 +20,12 @@ window.onload = function(){
     init();
     createCelestialBodies();
     addCelestialBodiesToScene();
+    addGeneralEventListener();
+    fillPlanetUUIDMap();
     animate();
 }
 
-function init()
-{
-    celestialBodyMap["sun"] = new Planet(THREEx.Planets.createSun(), [POSITION_SUN,0,0], RADIUS_SUN, getRandomFloatNumberFromInterval());
-    celestialBodyMap["mercury"] = new Planet(THREEx.Planets.createMercury(), [POSITION_MERCURY, 0, 0], RADIUS_MERCURY, getRandomFloatNumberFromInterval());
-    celestialBodyMap["venus"] = new Planet(THREEx.Planets.createVenus(), [POSITION_VENUS, 0, 0], RADIUS_VENUS, getRandomFloatNumberFromInterval());
-    celestialBodyMap["earth"] = new Planet(THREEx.Planets.createEarth(), [POSITION_EARTH,0,0], RADIUS_EARTH, getRandomFloatNumberFromInterval());
-    celestialBodyMap["mars"] = new Planet(THREEx.Planets.createMars(), [POSITION_MARS, 0, 0], RADIUS_MARS, getRandomFloatNumberFromInterval());
-    celestialBodyMap["jupiter"] = new Planet(THREEx.Planets.createJupiter(), [POSITION_SATURN, 0, 0], RADIUS_SATURN, getRandomFloatNumberFromInterval());
-    celestialBodyMap["saturn"] = new Planet(THREEx.Planets.createSaturn(), [POSITION_JUPITER, 0, 0], RADIUS_JUPITER, getRandomFloatNumberFromInterval());
-    celestialBodyMap["uranus"] = new Planet(THREEx.Planets.createUranus(), [POSITION_URANUS, 0, 0], RADIUS_URANUS, getRandomFloatNumberFromInterval());
-    celestialBodyMap["neptune"] = new Planet(THREEx.Planets.createNeptune(), [POSITION_NEPTUNE, 0, 0], RADIUS_NEPTUNE, getRandomFloatNumberFromInterval());
-    celestialBodyMap["pluto"] = new Planet(THREEx.Planets.createPluto(), [POSITION_PLUTO, 0, 0], RADIUS_PLUTO, getRandomFloatNumberFromInterval());
+function init(){
 
     // SCENE
     scene = new THREE.Scene();
@@ -58,6 +50,13 @@ function init()
     // CONTROLS
     controls = new THREE.OrbitControls( camera, renderer.domElement );
     getStatsWindow();
+
+    // initialize object to perform world/screen calculations
+    projector = new THREE.Projector();
+
+    // when the mouse moves, call the given function
+    document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
     scene.add(getMainLight());
     scene.add(getSkybox());
 }
@@ -69,7 +68,7 @@ function getSkybox() {
     var skyBoxMaterial = new THREE.MeshBasicMaterial();
     skyBoxMaterial.map = loadTexture("images/galaxy_starfield.png");
     skyBoxMaterial.side = THREE.DoubleSide;
-    return new THREE.Mesh(skyBoxGeometry, skyBoxMaterial);;
+    return new THREE.Mesh(skyBoxGeometry, skyBoxMaterial);
 }
 function getMainLight() {
     return new THREE.AmbientLight(0xfffffff);
@@ -91,6 +90,46 @@ function animate()
 
 function update()
 {
+    // find intersections
+
+    // create a Ray with origin at the mouse position
+    //   and direction into the scene (camera direction)
+    var vector = new THREE.Vector3( mouse.x, mouse.y, 1 );
+    projector.unprojectVector( vector, camera );
+    var ray = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+    // create an array containing all objects in the scene with which the ray intersects
+    var intersects = ray.intersectObjects( scene.children );
+
+    // INTERSECTED = the object in the scene currently closest to the camera
+    //		and intersected by the Ray projected from the mouse position
+
+    // if there is one (or more) intersections
+    if ( intersects.length > 0 )
+    {
+        // if the closest object intersected is not the currently stored intersection object
+        if ( intersects[ 0 ].object != INTERSECTED )
+        {
+            if ( INTERSECTED ){
+                INTERSECTED.material.color.setHex( INTERSECTED.currentHex );}
+            // store reference to closest object as current intersection object
+            INTERSECTED = intersects[ 0 ].object;
+            // store color of closest object (for later restoration)
+            // set a new color for closest object
+            // restore previous intersection object (if it exists) to its original color
+            setIntersectedUUID(INTERSECTED.geometry.uuid);
+        }
+    }
+    else // there are no intersections
+    {
+        // restore previous intersection object (if it exists) to its original color
+        if ( INTERSECTED )
+            INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+        // remove previous intersection object reference
+        //     by setting current intersection object to "nothing"
+        INTERSECTED = null;
+    }
+
     if ( keyboard.pressed("z") )
     {
         // do something

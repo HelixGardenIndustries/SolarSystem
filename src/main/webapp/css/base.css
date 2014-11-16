@@ -28,8 +28,8 @@ body
     padding: 5px;
 }
 
-#celestialBodyNavigation li:hover {
+#celestialBodyNavigation li:hover, .hovered {
     cursor: pointer;
-    background: #ffffff;
-    color: #000000;
+    background: #ffffff !important;
+    color: #000000 !important;
 }

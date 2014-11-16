@@ -45,6 +45,10 @@ Planet.prototype = {
         scene.add(this.outlineMesh);
     },
 
+    removeOutlineMesh: function(){
+        scene.remove(this.outlineMesh);
+    },
+
     update: function(){
         this.updatePosition();
         this.updateRotation();

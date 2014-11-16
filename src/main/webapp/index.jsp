@@ -23,16 +23,16 @@
     <div id="canvas"></div>
     <%--var sun, mercury, venus, earth, mars, jupiter, saturn, uranus, neptune, pluto;--%>
         <ul id="celestialBodyNavigation">
-            <li>Sonne</li>
-            <li>Merkur</li>
-            <li>Venus</li>
-            <li>Erde</li>
-            <li>Mars</li>
-            <li>Jupiter</li>
-            <li>Saturn</li>
-            <li>Uranus</li>
-            <li>Neptun</li>
-            <li>Pluto</li>
+            <li id="sonne">Sonne</li>
+            <li id="merkur">Merkur</li>
+            <li id="venus">Venus</li>
+            <li id="erde">Erde</li>
+            <li id="mars">Mars</li>
+            <li id="jupiter">Jupiter</li>
+            <li id="saturn">Saturn</li>
+            <li id="uranus">Uranus</li>
+            <li id="neptun">Neptun</li>
+            <li id="pluto">Pluto</li>
         </ul>
 </body>
 </html>
