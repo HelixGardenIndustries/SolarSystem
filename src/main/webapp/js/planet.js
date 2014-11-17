@@ -1,4 +1,4 @@
-var outlineMesh1;
+
 function Planet(planet, positionArray, radius) {
     this.planet = planet;
     this.radius = radius;
@@ -12,6 +12,7 @@ function Planet(planet, positionArray, radius) {
 }
 
 Planet.prototype = {
+    outlineMesh : null,
 
     getPlanet: function(){
         return this.planet;
@@ -32,26 +33,42 @@ Planet.prototype = {
     },
 
     updateOutlinePosition: function(){
+        if(this.outlineMesh == null){
+                this.outlineMesh = this.getOutlineMesh();
+        }
+
         this.outlineMesh.position.x = this.getPlanet().position.x;
         this.outlineMesh.position.z = this.getPlanet().position.z;
     },
 
-    setOutlineMesh: function (outlineMesh) {
-        this.outlineMesh = outlineMesh;
-        //scene.add(this.outlineMesh);
+    setOutlineMesh: function () {
+        scene.add(this.outlineMesh);
     },
 
     showOutlineMesh: function(){
+        if(this.outlineMesh == null){
+            this.outlineMesh = this.getOutlineMesh();
+        }
         scene.add(this.outlineMesh);
     },
 
     removeOutlineMesh: function(){
-        scene.remove(this.outlineMesh);
+    console.log("sdfds");
+        this.outlineMesh.scale.multiplyScalar(0.5);
     },
 
     update: function(){
         this.updatePosition();
         this.updateRotation();
         this.updateOutlinePosition();
+    },
+
+    getOutlineMesh: function(){
+        var sphereGeometry =  new THREE.SphereGeometry(50, 32, 16);
+        var outlineMaterial1 = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.BackSide } );
+        var outlineMesh = new THREE.Mesh( sphereGeometry, outlineMaterial1 );
+        outlineMesh.position.set(this.getPlanet().position[0], 0, 0);
+        outlineMesh.scale.multiplyScalar(1.1);
+        return outlineMesh;
     }
 };

@@ -24,14 +24,6 @@ function addCelestialBodiesToScene(){
 
     $.each(celestialBodyMap, function(planetName, celestialBody) {
         scene.add(celestialBody.getPlanet());
-
-        var sphereGeometry =  new THREE.SphereGeometry(50, 32, 16);
-        var outlineMaterial1 = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.BackSide } );
-        var outlineMesh1 = new THREE.Mesh( sphereGeometry, outlineMaterial1 );
-        outlineMesh1.position.set(celestialBody.getPlanet().position[0], 0, 0);
-        outlineMesh1.scale.multiplyScalar(1.1);
-
-        celestialBody.setOutlineMesh(outlineMesh1);
     });
 }
 
@@ -65,11 +57,6 @@ function navigationButtonsMouseLeave(navigationButtons){
 
 
 function onDocumentMouseMove( event ) {
-    // the following line would stop any other event handler from firing
-    // (such as the mouse's TrackballControls)
-    // event.preventDefault();
-
-    // update the mouse variable
     mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
     mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
 }
@@ -77,5 +64,14 @@ function onDocumentMouseMove( event ) {
 function setIntersectedUUID(intersectedUUID) {
     var selectedPlanet = planetUIDMap[intersectedUUID];
 
+    if(typeof selectedPlanet != 'undefined'){
+        var celestialBody = celestialBodyMap[selectedPlanet];
+        celestialBody.showOutlineMesh();
+    }else{
+
+        $.each(celestialBodyMap, function(planetName, celestialBody) {
+            celestialBody.removeOutlineMesh();
+        });
+    }
 }
 
