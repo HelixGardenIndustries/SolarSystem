@@ -1,5 +1,5 @@
 
-function Planet(planet, positionArray, radius) {
+function Planet(planet, positionArray, radius, meshGlowColor) {
     this.planet = planet;
     this.radius = radius;
     this.positionArray = positionArray;
@@ -9,10 +9,11 @@ function Planet(planet, positionArray, radius) {
     this.planet.scale.set(radius, radius, radius);
     this.distanceAngle = getRandomFloatNumberFromInterval();
     this.radian = Math.PI;
+    this.meshGlowColor = meshGlowColor;
 }
 
 Planet.prototype = {
-    outlineMesh : null,
+    glowMesh : null,
 
     getPlanet: function(){
         return this.planet;
@@ -32,43 +33,28 @@ Planet.prototype = {
         return this.radian;
     },
 
-    updateOutlinePosition: function(){
-        if(this.outlineMesh == null){
-                this.outlineMesh = this.getOutlineMesh();
-        }
-
-        this.outlineMesh.position.x = this.getPlanet().position.x;
-        this.outlineMesh.position.z = this.getPlanet().position.z;
-    },
-
     setOutlineMesh: function () {
         scene.add(this.outlineMesh);
     },
 
-    showOutlineMesh: function(){
-        if(this.outlineMesh == null){
-            this.outlineMesh = this.getOutlineMesh();
-        }
-        scene.add(this.outlineMesh);
+    showGlowMesh: function(){
+
+        if(!this.glowMesh){
+            var spriteMaterial = getGlowMesh(this.meshGlowColor);
+            this.glowMesh = new THREE.Sprite( spriteMaterial );
+            this.glowMesh.scale.set(400, 400, 1.0);
+         };
+
+        this.planet.add(this.glowMesh); // this centers the glow at the mesh
     },
 
-    removeOutlineMesh: function(){
-    console.log("sdfds");
-        this.outlineMesh.scale.multiplyScalar(0.5);
+    hideGlowMesh: function(){
+        this.planet.remove(this.glowMesh); // this centers the glow at the mesh
     },
 
     update: function(){
         this.updatePosition();
         this.updateRotation();
-        this.updateOutlinePosition();
-    },
-
-    getOutlineMesh: function(){
-        var sphereGeometry =  new THREE.SphereGeometry(50, 32, 16);
-        var outlineMaterial1 = new THREE.MeshBasicMaterial( { color: 0xff0000, side: THREE.BackSide } );
-        var outlineMesh = new THREE.Mesh( sphereGeometry, outlineMaterial1 );
-        outlineMesh.position.set(this.getPlanet().position[0], 0, 0);
-        outlineMesh.scale.multiplyScalar(1.1);
-        return outlineMesh;
     }
+
 };

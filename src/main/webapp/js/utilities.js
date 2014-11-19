@@ -203,4 +203,12 @@ function getRandomFloatNumberFromInterval() {
     return parseFloat(highlightedNumber);
 }
 
+function getGlowMesh(color){
+        return new THREE.SpriteMaterial({
+            map: new THREE.ImageUtils.loadTexture( '/img/glow.png' ),
+            useScreenCoordinates: false,
+            color: color, transparent: false, blending: THREE.AdditiveBlending
+        });
+}
+
 
