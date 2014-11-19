@@ -1,5 +1,4 @@
 var planetUIDMap = {};
-var planet2GlowColorMap = {};
 var selectedCelestialBody;
 
 function createCelestialBodies(){
@@ -18,12 +17,6 @@ function createCelestialBodies(){
 function fillPlanetUUIDMap(){
     $.each(celestialBodyMap, function(planetName, celestialBody) {
         planetUIDMap[celestialBody.getPlanet().geometry.uuid] = planetName;
-    });
-}
-
-function fillPlanet2GlowColorMap(){
-    $.each(celestialBodyMap, function(planetName, celestialBody) {
-        planet2GlowColorMap[celestialBody.getPlanet().geometry.uuid] = planetName;
     });
 }
 
