@@ -1,5 +1,6 @@
 
-function Planet(planet, positionArray, radius, meshGlowColor) {
+function Planet(id, planet, positionArray, radius, meshGlowColor) {
+    this.id = id;
     this.planet = planet;
     this.radius = radius;
     this.positionArray = positionArray;
@@ -55,6 +56,10 @@ Planet.prototype = {
     update: function(){
         this.updatePosition();
         this.updateRotation();
+    },
+
+    getId: function(){
+        return this.id;
     }
 
 };

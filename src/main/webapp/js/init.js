@@ -10,7 +10,7 @@
 var container, scene, camera, renderer, controls, stats;
 var keyboard = new THREEx.KeyboardState();
 var celestialBodyMap = {};
-var projector, mouse = { x: 0, y: 0 }, INTERSECTED;
+var projector, mouse = { x: 0, y: 0 }, intersectedObject;
 var clock = new THREE.Clock();
 
 // custom global variables
@@ -101,33 +101,33 @@ function update()
     // create an array containing all objects in the scene with which the ray intersects
     var intersects = ray.intersectObjects( scene.children );
 
-    // INTERSECTED = the object in the scene currently closest to the camera
+    // intersectedObject = the object in the scene currently closest to the camera
     //		and intersected by the Ray projected from the mouse position
 
     // if there is one (or more) intersections
     if ( intersects.length > 0 )
     {
         // if the closest object intersected is not the currently stored intersection object
-        if ( intersects[ 0 ].object != INTERSECTED )
+        if ( intersects[ 0 ].object != intersectedObject )
         {
-            if ( INTERSECTED ){
-                INTERSECTED.material.color.setHex( INTERSECTED.currentHex );}
+            if ( intersectedObject ){
+                intersectedObject.material.color.setHex( intersectedObject.currentHex );}
             // store reference to closest object as current intersection object
-            INTERSECTED = intersects[ 0 ].object;
+            intersectedObject = intersects[ 0 ].object;
             // store color of closest object (for later restoration)
             // set a new color for closest object
             // restore previous intersection object (if it exists) to its original color
-            setIntersectedUUID(INTERSECTED.geometry.uuid);
+            processCelestialBodySelection(intersectedObject.geometry.uuid);
         }
     }
     else // there are no intersections
     {
         // restore previous intersection object (if it exists) to its original color
-        if ( INTERSECTED )
-            INTERSECTED.material.color.setHex( INTERSECTED.currentHex );
+        if ( intersectedObject )
+            intersectedObject.material.color.setHex( intersectedObject.currentHex );
         // remove previous intersection object reference
         //     by setting current intersection object to "nothing"
-        INTERSECTED = null;
+        intersectedObject = null;
     }
 
     if ( keyboard.pressed("z") )
