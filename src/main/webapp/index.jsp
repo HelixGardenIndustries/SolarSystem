@@ -14,10 +14,12 @@
     <script src="js/constants.js"></script>
     <script src="js/utilities.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/planet.js"></script>
+    <script src="js/Planet.js"></script>
+    <script src="js/CelestialBodyInformationController.js"></script>
     <script src="js/lib/planets/threex.planets.js"></script>
     <script src="js/lib/jquery-2.1.1.min.js"></script>
     <script src="js/solarSystem.js"></script>
+    <script text="type/json" src="jsonData/celestialBodyData.json"></script>
 </head>
 <body>
     <div id="canvas"></div>
@@ -34,5 +36,61 @@
             <li id="neptun">Neptun</li>
             <li id="pluto">Pluto</li>
         </ul>
+        <div id="infoPanel">
+            <h1 id="Name"></h1>
+            <table border="1">
+                <tr>
+                    <th width="30%">Eigenschaft</th>
+                    <th width="70%">Wert</th>
+                </tr>
+                <tr>
+                    <td>Masse</td>
+                    <td id="Masse">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Radius</td>
+                    <td id="Radius">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Dichte</td>
+                    <td id="Dichte">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Rotationsperiode</td>
+                    <td id="Rotationsperiode">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Orbitalperiode</td>
+                    <td id="Orbitalperiode">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Sonnenentfernung</td>
+                    <td id="Sonnenentfernung">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Orbitalgeschwindigkeit</td>
+                    <td id="Orbitalgeschwindigkeit">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Achsenneigung</td>
+                    <td id="Achsenneigung">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Temperatur</td>
+                    <td id="Temperatur">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>AtmoDruck</td>
+                    <td id="AtmoDruck">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr>
+                    <td>Monde</td>
+                    <td id="Monde">Lorem ipsum dolor sit amet,</td>
+                </tr>
+                <tr colspan="2">
+                    <td colspan="2" id="Beschreibung">Lorem ipsum dolor sit amet,</td>
+                </tr>
+            </table>
+        </div>
 </body>
 </html>

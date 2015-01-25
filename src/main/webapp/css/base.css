@@ -41,3 +41,30 @@ body
     background: #ffffff !important;
     color: #000000 !important;
 }
+
+#infoPanel{
+    border: 1px solid #efefef;
+    background-color: #000000;
+    width: 35%;
+    height: 90%;
+    display: block;
+    /*display: none;*/
+    position: relative;
+}
+
+#infoPanel table{
+    color: #ffffff;
+    margin: 10px 10px 10px 15px;
+    padding: 5px;
+    border-collapse: collapse;
+    font-family: Verdana, Geneva, sans-serif;
+    border: 0;
+}
+#infoPanel h1{
+    color: #ffffff;
+    margin-left: 10px;
+}
+
+#infoPanel table td{
+    padding: 5px;
+}

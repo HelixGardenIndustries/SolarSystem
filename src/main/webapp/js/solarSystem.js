@@ -44,6 +44,7 @@ function navigationButtonsMouseEnter(navigationButtons){
         var celestialBodyTarget = event.target.innerHTML.toLowerCase();
         var planet = celestialBodyMap[celestialBodyTarget];
         planet.showGlowMesh();
+        showInfoPanel(planet);
     });
 }
 
@@ -52,6 +53,7 @@ function navigationButtonsMouseLeave(navigationButtons){
         var celestialBodyTarget = event.target.innerHTML.toLowerCase();
         var planet = celestialBodyMap[celestialBodyTarget];
         planet.hideGlowMesh();
+        hideInfoPanel();
     });
 }
 
@@ -83,3 +85,31 @@ function setButtonUnSelected(id){
     $("#" + id).removeClass("hovered");
 }
 
+function showInfoPanel(celestialBody){
+
+    // the celestial body data
+    $.each(getDataForCelestialBodyFromJsonById(celestialBody.id), function(key, value) {
+        //display the key and value pair
+        $("#" + key).text(value);
+        // set the text color of the heading
+        $("#infoPanel h1").css("color", celestialBody.meshGlowColor.toString(16));
+        $("#infoPanel").css("border-color", celestialBody.meshGlowColor.toString(16));
+    });
+
+    $("#infoPanel").show();
+}
+
+function getDataForCelestialBodyFromJsonById(id){
+    for(var o in info){
+        // loop over json data to find out the data for select planet
+        if(info[o].id == id){
+            return info[o].data;
+            // the celestial body data
+        }
+    }
+}
+
+function hideInfoPanel(){
+    console.log("hideInfoPanel");
+    $("#infoPanel").hide();
+}
