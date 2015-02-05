@@ -2,7 +2,7 @@ var info = [{
         "id": "mars",
         "data" : {
         "Name": "Mars",
-        "Masse": "6.419 x 10²³ kg",
+        "Masse": "6.419 x 10²U+002B³ kg",
         "Radius": "3.397 km",
         "Dichte": "3,94 g/cm³",
         "Rotationsperiode": "24,37 Stunden",
@@ -46,7 +46,7 @@ var info = [{
         "Achsenneigung": "177,36° ",
         "Temperatur": "737 K (mittel)",
         "AtmoDruck": "92 bar",
-        "Monde": "-",
+        "Monde": "keine",
         "Beschreibung": "Die Venus hat eine dichte Atmosphäre, die hauptsächlich aus Kohlendioxid und zu einem kleineren Anteil aus Stickstoff besteht. Auf der Oberfläche ist der Luftdruck ungefähr neunzigmal so groß wie auf der Erde, und die Temperatur beträgt mehr als 450 ºC. Sie liegt damit über der Oberflächentemperatur des sonnennächsten Planeten Merkur. Trotz der extrem langsamen Rotation gibt es keine größeren Temperaturunterschiede zwischen der Tag- und der Nachtseite. Der hohe Kohlendioxidgehalt der Atmosphäre verursacht einen starken Treibhauseffekt, der verantwortlich für die lebensfeindlichen Bedingungen ist. In Höhe der Wolken herrschen Windgeschwindigkeiten von 350 km/h, doch an der Oberfläche sind die Winde relativ schwach. Wegen des hohen Luftdrucks (richtigerweise \"Gasdrucks\", da die Atmosphäre nicht Luft im herkömmlichen Sinne ist) sind aber selbst solch schwache Winde in der Lage, eine erhebliche Kraft auf Objekte auszuüben.Die Wolken bestehen aus Schwefeldioxid und Schwefelsäure und bedecken den Planeten lückenlos, so dass aus dem All keine Oberflächendetails sichtbar sind. Temperaturen am oberen Ende der Wolkenschicht betragen etwa -45 °C."
       }},
       {
@@ -63,7 +63,7 @@ var info = [{
         "Achsenneigung": "0,01° ",
         "Temperatur": "440K (mittel)",
         "AtmoDruck": "10^-15 bar",
-        "Monde": "-",
+        "Monde": "keine",
         "Beschreibung": "Merkur ist der innerste Planet in unserem Sonnensystem. Wegen seiner Sonnennähe ist er von der Erde aus visuell nur etwa 2 Stunden vor Sonnenaufang bzw. 2 Stunden nach Sonnenuntergang zu sehen und das auch nur dann, wenn zur Beobachtungszeit die Ekliptik möglichst steil zum Horizont verläuft. In jeweils 217 Jahren zieht Merkur von der Erde aus gesehen 20 mal im November und 9 mal im Mai als schwarzer Fleck über die helle Sonnenscheibe, das nächste Mal am 15. November 1999. Merkurs Bahn ist stark elliptisch und infolgedessen gibt es eine großen Unterschied zwischen der Aphel- und Periheldistanz. Im Perihel nähert sich der Planet bis auf 46 Millionen km der Sonne an (bezogen auf den Sonnenmittelpunkt),im Aphel ist er 70 Millionen km von ihr entfernt. Aufgrund der großen Sonnennähe läßt sich bei Merkur recht gut der relativistische Anteil der Periheldrehung der Bahn nachweisen."
       }},
       {
@@ -165,6 +165,6 @@ var info = [{
         "Achsenneigung": "7°15",
         "Temperatur": "15·106 C°",
         "AtmoDruck": "2 X 10^16 Pa",
-        "Monde": "-",
+        "Monde": "keine",
         "Beschreibung": "Die Sonne ist der bei weitem größte Himmelskörper im unserem Sonnensystem. Ihr Durchmesser beträgt das ca. 109-fache des Erddurchmessers, und sie vereint auf sich 99,8 % der Gesamtmasse des Systems. Die Sonne ist ein Stern aus der so genannten Hauptreihe, ihre Spektralklasse ist G2, und sie hat die Leuchtkraftklasse V. Das bedeutet, dass die Sonne ein relativ gewöhnlicher, gelb-orange-leuchtender Stern ist. Ihre Masse beträgt etwa das Doppelte des geschätzten Mittelwertes der Sterne in der Milchstraße. Ihre Masse setzt sich zu 75 % aus Wasserstoff und zu 25 % aus Helium zusammen. Hinsichtlich der Anzahl der Atome betragen diese Anteile 92,1 % und 7,8 %. Im Kern, der Energiequelle der Sonne, werden pro Sekunde 700 Millionen Tonnen Wasserstoff zu 695 Millionen Tonnen Helium fusioniert. Durch den Massenunterschied wird nach E = m c²"
       }}]

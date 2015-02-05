@@ -2,6 +2,12 @@ var planetUIDMap = {};
 var currentlySelectedCelestialBody;
 
 function createCelestialBodies(){
+
+    // Place camera on x axis
+    camera.position.set(1000,0,0);
+    //camera.up = new THREE.Vector3(0,0,1);
+    camera.lookAt(new THREE.Vector3(0,0,0));
+
     celestialBodyMap["sonne"] = new Planet("sonne", THREEx.Planets.createSun(), [POSITION_SUN,0,0], RADIUS_SUN, 0xffff00);
     celestialBodyMap["merkur"] = new Planet("merkur", THREEx.Planets.createMercury(), [POSITION_MERCURY, 0, 0], RADIUS_MERCURY, 0x8e5e12);
     celestialBodyMap["venus"] = new Planet("venus", THREEx.Planets.createVenus(), [POSITION_VENUS, 0, 0], RADIUS_VENUS, 0x6d5438);
@@ -87,16 +93,21 @@ function setButtonUnSelected(id){
 
 function showInfoPanel(celestialBody){
 
-    // the celestial body data
+    // the celestial body data, iterate through json data and set the values
     $.each(getDataForCelestialBodyFromJsonById(celestialBody.id), function(key, value) {
         //display the key and value pair
         $("#" + key).text(value);
         // set the text color of the heading
-        $("#infoPanel h1").css("color", celestialBody.meshGlowColor.toString(16));
-        $("#infoPanel").css("border-color", celestialBody.meshGlowColor.toString(16));
+        setColorToElements("#infoPanel h1", "background-color", celestialBody.meshGlowColor.toString(16));
+        setColorToElements("#infoPanel", "border-color", celestialBody.meshGlowColor.toString(16));
+        setColorToElements(".block", "border-color", celestialBody.meshGlowColor.toString(16));
     });
 
     $("#infoPanel").show();
+}
+
+function setColorToElements(selector, property, color){
+    $(selector).css(property, color);
 }
 
 function getDataForCelestialBodyFromJsonById(id){
@@ -110,6 +121,11 @@ function getDataForCelestialBodyFromJsonById(id){
 }
 
 function hideInfoPanel(){
+
+    $.each($("#celestialBodyNavigation").find("li"), function() {
+        setButtonUnSelected($(this).attr("id"));
+    });
+
     console.log("hideInfoPanel");
-    $("#infoPanel").hide();
+    //$("#infoPanel").hide();
 }

@@ -3,15 +3,13 @@
     src: url(/../fonts/StarTrek.ttf);
 }
 
-
-body
-{
+body{
 	font-family: customFont;
 	font-weight: bold;
-	background-color: #000000;
 	font-size: 14px;
 	margin: 0px;
-	overflow: hidden;
+	margin:0;
+    padding:0;
 }
 
 #canvas{
@@ -43,8 +41,10 @@ body
 }
 
 #infoPanel{
-    border: 1px solid #efefef;
-    background-color: #000000;
+    margin: 0 0 0 20px;
+    padding: 0;
+    border: 4px solid #efefef;
+    background-color: rgba(0,0,0,0.5);
     width: 35%;
     height: 90%;
     display: block;
@@ -52,19 +52,131 @@ body
     position: relative;
 }
 
-#infoPanel table{
-    color: #ffffff;
-    margin: 10px 10px 10px 15px;
+#infoPanel div#Beschreibung{
+    color: #f7fffa;
+    /*margin: 10px 10px 10px 15px;*/
     padding: 5px;
     border-collapse: collapse;
-    font-family: Verdana, Geneva, sans-serif;
+    font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
     border: 0;
-}
-#infoPanel h1{
-    color: #ffffff;
-    margin-left: 10px;
+    font-weight: normal;
+    font-size: 18px;
 }
 
-#infoPanel table td{
+#infoPanel h1{
+    margin-top: 0;
+    color: #000000;
     padding: 5px;
+}
+
+.flipcard {
+    position: relative;
+    perspective: 500px;
+    font-size: 20px;
+    width: 50px;
+    height: 50px;
+    display:inline-block;
+}
+
+.flipcard.v:hover .front, .flipcard.v.flip .front{
+    transform: rotateX(180deg);
+}
+.flipcard.v:hover .back, .flipcard.v.flip .back{
+    transform: rotateX(0deg);
+}
+.flipcard.v .back{
+    transform: rotateX(-180deg);
+}
+.flipcard.h:hover .front, .flipcard.h.flip .front{
+  transform: rotateY(180deg);
+}
+.flipcard.h:hover .back, .flipcard.h.flip .back{
+  transform: rotateY(0deg);
+}
+.flipcard.h .back{
+  transform: rotateY(-180deg);
+}
+.flipcard .front, .flipcard .back{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  transition: all 0.1s ease-in;
+  color: white;
+  backface-visibility: hidden;
+}
+
+.flipcard{
+    opacity: 1.0;
+}
+
+/* NEW */
+html, body {
+    margin:0;
+    padding:0;
+}
+#container{
+    font-size:0;
+    margin:0 auto;
+    width:500px;
+}
+
+.block {
+    font-size:20px;
+    margin:25px;
+    display:inline-block;
+}
+
+/* Media queries for the box container*/
+/*@media screen and (max-width: 430px) {#container{width:200px;}}
+@media screen and (min-width: 431px) and (max-width: 630px) {#container{width:400px;}}
+@media screen and (min-width: 631px) and (max-width: 830px) {#container{width:600px;}}
+@media screen and (min-width: 831px) and (max-width: 1030px){#container{width:800px;}}
+*/
+.block, #infoPanel{
+    border: solid 6px #000000;
+
+    /* Radius */
+   border:solid 5px #000000;
+   -moz-border-radius-topleft: 16px;
+   -moz-border-radius-topright:16px;
+   -moz-border-radius-bottomleft:16px;
+   -moz-border-radius-bottomright:16px;
+   -webkit-border-top-left-radius:16px;
+   -webkit-border-top-right-radius:16px;
+   -webkit-border-bottom-left-radius:16px;
+   -webkit-border-bottom-right-radius:16px;
+   border-top-left-radius:16px;
+   border-top-right-radius:16px;
+   border-bottom-left-radius:16px;
+   border-bottom-right-radius:16px;
+
+    /* Shadow */
+    -moz-box-shadow: 10px 10px 45px #ffffff;
+    -webkit-box-shadow: 10px 10px 45px #ffffff;
+    box-shadow: 10px 10px 45px #ffffff;
+}
+
+#infoPanel{
+    /*box-shadow: none;*/
+}
+
+.block, .flipcard img{
+    font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+    width: 100px;
+    height: 100px;
+}
+
+.flipcard img{
+    border: none;
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+}
+
+.flipcard .back{
+    color: #ffffff;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 20px;
 }
