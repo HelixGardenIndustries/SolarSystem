@@ -43,6 +43,14 @@ function addGeneralEventListener(){
     var navigationButtons = $("#celestialBodyNavigation").find("li");
     navigationButtonsMouseEnter(navigationButtons);
     navigationButtonsMouseLeave(navigationButtons);
+    closeInfoPanelEventListener();
+
+}
+
+function closeInfoPanelEventListener(){
+    $("#closeButton").click(function(){
+        $("#infoPanel").hide();
+    });
 }
 
 function navigationButtonsMouseEnter(navigationButtons){
@@ -77,6 +85,7 @@ function processCelestialBodySelection(intersectedUUID) {
         currentlySelectedCelestialBody = celestialBodyMap[selectedPlanet];
         currentlySelectedCelestialBody.showGlowMesh();
         setButtonSelected(currentlySelectedCelestialBody.getId());
+        showInfoPanel(currentlySelectedCelestialBody);
     }else{
         currentlySelectedCelestialBody.hideGlowMesh();
         setButtonUnSelected(currentlySelectedCelestialBody.getId());
@@ -97,12 +106,12 @@ function showInfoPanel(celestialBody){
     $.each(getDataForCelestialBodyFromJsonById(celestialBody.id), function(key, value) {
         //display the key and value pair
         $("#" + key).text(value);
-        // set the text color of the heading
-        setColorToElements("#infoPanel h1", "background-color", celestialBody.meshGlowColor.toString(16));
-        setColorToElements("#infoPanel", "border-color", celestialBody.meshGlowColor.toString(16));
-        setColorToElements(".block", "border-color", celestialBody.meshGlowColor.toString(16));
     });
 
+    setColorToElements("#infoPanel #name", "background-color", celestialBody.meshGlowColor.toString(16));
+    setColorToElements("#infoPanel", "border-color", celestialBody.meshGlowColor.toString(16));
+    setColorToElements(".block", "border-color", celestialBody.meshGlowColor.toString(16));
+    setColorToElements("#closeButton", "background-color", celestialBody.meshGlowColor.toString(16));
     $("#infoPanel").show();
 }
 
@@ -112,20 +121,20 @@ function setColorToElements(selector, property, color){
 
 function getDataForCelestialBodyFromJsonById(id){
     for(var o in info){
-        // loop over json data to find out the data for select planet
         if(info[o].id == id){
             return info[o].data;
-            // the celestial body data
         }
     }
 }
 
 function hideInfoPanel(){
 
+    deselectButtons();
+    $("#infoPanel").hide();
+}
+
+function deselectButtons(){
     $.each($("#celestialBodyNavigation").find("li"), function() {
         setButtonUnSelected($(this).attr("id"));
     });
-
-    console.log("hideInfoPanel");
-    //$("#infoPanel").hide();
 }

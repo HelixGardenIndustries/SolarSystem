@@ -7,9 +7,8 @@ body{
 	font-family: customFont;
 	font-weight: bold;
 	font-size: 14px;
-	margin: 0px;
-	margin:0;
-    padding:0;
+	margin: 0;
+    padding: 0;
 }
 
 #canvas{
@@ -52,24 +51,26 @@ body{
     position: relative;
 }
 
-#infoPanel div#Beschreibung{
+#infoPanel div#Beschreibung, div#physikalischeEigenschaften{
     color: #f7fffa;
-    /*margin: 10px 10px 10px 15px;*/
+    margin: 10px 10px 10px 10px;
     padding: 5px;
     border-collapse: collapse;
     font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
-    border: 0;
+    /*border: 0;*/
     font-weight: normal;
     font-size: 18px;
 }
 
-#infoPanel h1{
+
+#infoPanel h1#name{
     margin-top: 0;
     color: #000000;
     padding: 5px;
 }
 
 .flipcard {
+    border: 5px solid #ff0000;
     position: relative;
     perspective: 500px;
     font-size: 20px;
@@ -135,9 +136,8 @@ html, body {
 */
 .block, #infoPanel{
     border: solid 6px #000000;
-
     /* Radius */
-   border:solid 5px #000000;
+   border:solid 5px #ffffff;
    -moz-border-radius-topleft: 16px;
    -moz-border-radius-topright:16px;
    -moz-border-radius-bottomleft:16px;
@@ -150,15 +150,13 @@ html, body {
    border-top-right-radius:16px;
    border-bottom-left-radius:16px;
    border-bottom-right-radius:16px;
+}
 
+#infoPanel{
     /* Shadow */
     -moz-box-shadow: 10px 10px 45px #ffffff;
     -webkit-box-shadow: 10px 10px 45px #ffffff;
     box-shadow: 10px 10px 45px #ffffff;
-}
-
-#infoPanel{
-    /*box-shadow: none;*/
 }
 
 .block, .flipcard img{
@@ -180,3 +178,46 @@ html, body {
     padding-top: 10px;
     font-size: 20px;
 }
+
+#Beschreibung, #physikalischeEigenschaften{
+    max-height: 40%;
+    min-height: 40%;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: visible;
+    margin-top: 20px;
+}
+
+::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f5334d;
+    -webkit-border-radius: 1ex;
+    -webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+::-webkit-scrollbar-corner {
+    background: #000;
+}
+
+.simpleBorder{
+    border: 1px solid red;
+}
+
+#closeButton{
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    padding-right: 5px;
+    font-family: Trebuchet MS, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+}
+
+#closeButton:hover{
+    cursor: pointer;
+}
+
